@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>OPTIMARKET</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      /* Login Page Specific Styles */
+      body {
+        background: #f0f2f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 1rem;
+      }
+
+      .login-wrapper {
+        width: 100%;
+        max-width: 420px;
+      }
+
+      .login-card {
+        background: white;
+        border-radius: 20px;
+        padding: 2.5rem 2rem;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Logo / Brand */
+      .brand-area {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .brand-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.3rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .brand-logo .logo-icon {
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, #dc2626, #991b1b);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1rem;
+      }
+
+      .brand-logo h1 {
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        color: #1e293b;
+      }
+
+      .brand-logo h1 span {
+        color: #dc2626;
+      }
+
+      .brand-subtitle {
+        color: #64748b;
+        font-size: 0.95rem;
+        font-weight: 400;
+      }
+
+      /* Form Fields */
+      .field-group {
+        margin-bottom: 1.4rem;
+      }
+
+      .field-label {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #334155;
+        margin-bottom: 0.5rem;
+      }
+
+      .field-label .required {
+        color: #dc2626;
+        margin-left: 2px;
+      }
+
+      .field-label .optional {
+        color: #94a3b8;
+        font-weight: 400;
+        font-size: 0.85rem;
+      }
+
+      .field-input {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-family: inherit;
+        color: #1e293b;
+        background: #f8fafc;
+        transition: all 0.2s ease;
+        outline: none;
+      }
+
+      .field-input:focus {
+        border-color: #dc2626;
+        background: white;
+        box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.08);
+      }
+
+      .field-input::placeholder {
+        color: #cbd5e1;
+      }
+
+      /* Phone field with prefix */
+      .phone-wrapper {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .phone-prefix {
+        padding: 0.85rem 1rem;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 12px;
+        background: #f1f5f9;
+        color: #64748b;
+        font-size: 1rem;
+        font-weight: 600;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+      }
+
+      .phone-wrapper .field-input {
+        flex: 1;
+      }
+
+      /* Submit Button */
+      .btn-submit {
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        color: white;
+        border: none;
+        border-radius: 14px;
+        font-size: 1rem;
+        font-weight: 700;
+        font-family: inherit;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+        box-shadow: 0 4px 16px rgba(220, 38, 38, 0.35);
+        transition: all 0.3s ease;
+        letter-spacing: 0.02em;
+      }
+
+      .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(220, 38, 38, 0.4);
+      }
+
+      .btn-submit:active {
+        transform: translateY(0);
+      }
+
+      /* Error message */
+      .error-msg {
+        color: #dc2626;
+        font-size: 0.8rem;
+        margin-top: 0.3rem;
+        display: none;
+      }
+
+      .error-msg.visible {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-wrapper">
+      <div class="login-card">
+        <!-- Brand -->
+        <div class="brand-area">
+          <div class="brand-logo">
+            <div class="logo-icon">
+              <i class="fas fa-eye"></i>
+            </div>
+            <h1>PTIMARKET</h1>
+          </div>
+          <p class="brand-subtitle">Bienvenido</p>
+        </div>
+
+        <!-- Form -->
+        <form id="loginForm" novalidate>
+          <div class="field-group">
+            <label class="field-label" for="opticaName">
+              Nombre de Optica <span class="required">*</span>
+            </label>
+            <input
+              type="text"
+              id="opticaName"
+              class="field-input"
+              placeholder="Ej: Vision Extreme"
+              required
+              autocomplete="organization"
+            />
+            <span class="error-msg" id="nameError"
+              >Por favor ingresa el nombre de tu óptica.</span
+            >
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="opticaPhone">
+              Numero de Celular <span class="required">*</span>
+            </label>
+            <div class="phone-wrapper">
+              <span class="phone-prefix">+591</span>
+              <input
+                type="tel"
+                id="opticaPhone"
+                class="field-input"
+                placeholder="70000000"
+                required
+                maxlength="8"
+                autocomplete="tel"
+              />
+            </div>
+            <span class="error-msg" id="phoneError"
+              >Por favor ingresa tu número de celular.</span
+            >
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="opticaNit">
+              NIT <span class="optional">(Opcional)</span>
+            </label>
+            <input
+              type="text"
+              id="opticaNit"
+              class="field-input"
+              placeholder="000000000-0"
+              autocomplete="off"
+            />
+          </div>
+
+          <button type="submit" class="btn-submit">
+            Ingresar <i class="fas fa-arrow-right"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Hidden Netlify Form for Analytics -->
+    <form name="registro-visita" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="nombre" />
+      <input type="text" name="celular" />
+      <input type="text" name="nit" />
+      <input type="text" name="timestamp" />
+    </form>
+
+    <!-- Scripts -->
+    <script src="../js/analytics.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+      // Init Auth Check (Redirects to cotizacion if already logged in)
+      Auth.check();
+
+      // Handle Form Submit
+      document.getElementById("loginForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("opticaName").value.trim();
+        const phone = document.getElementById("opticaPhone").value.trim();
+        const nit = document.getElementById("opticaNit").value.trim();
+
+        // Validation
+        let valid = true;
+
+        if (!name) {
+          document.getElementById("nameError").classList.add("visible");
+          valid = false;
+        } else {
+          document.getElementById("nameError").classList.remove("visible");
+        }
+
+        if (!phone) {
+          document.getElementById("phoneError").classList.add("visible");
+          valid = false;
+        } else {
+          document.getElementById("phoneError").classList.remove("visible");
+        }
+
+        if (!valid) return;
+
+        Auth.login(name, phone, nit);
+      });
+    </script>
+  </body>
+</html>

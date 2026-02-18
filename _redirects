@@ -1,0 +1,3 @@
+# Netlify Redirects
+# Redirect root to login
+/   /views/login.html   302
